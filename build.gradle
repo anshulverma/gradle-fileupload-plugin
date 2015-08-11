@@ -26,8 +26,8 @@ dependencies {
   compile 'org.apache.httpcomponents:httpmime:4.5'
 }
 
-version = '0.0.1-SNAPSHOT'
-group = 'net.anshulverma.gradle'
+version = '1.0.0'
+group = 'anshulverma'
 
 pluginBundle {
   website = 'http://www.gradle.org/'
@@ -39,7 +39,7 @@ pluginBundle {
     fileupload {
       id = 'net.anshulverma.gradle.fileupload'
       displayName = 'Gradle FileUpload Plugin'
-      version = '0.0.1'
+      version = version
     }
   }
 }
