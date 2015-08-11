@@ -20,7 +20,7 @@ class FileUploadPluginTest {
   @Test
   public void fileuploadPluginAddsFileUploadTaskToProject() {
     Project project = ProjectBuilder.builder().build()
-    project.apply plugin: 'fileupload'
+    project.apply plugin: 'net.anshulverma.gradle.fileupload'
 
     assertTrue(project.tasks.fileupload instanceof FileUploadTask)
   }
