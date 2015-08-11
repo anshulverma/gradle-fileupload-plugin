@@ -1,0 +1,45 @@
+buildscript {
+  repositories {
+    maven {
+      url 'https://plugins.gradle.org/m2/'
+    }
+  }
+  dependencies {
+    classpath 'com.gradle.publish:plugin-publish-plugin:0.9.1'
+  }
+}
+
+apply plugin: 'com.gradle.plugin-publish'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile gradleApi()
+  compile localGroovy()
+
+  compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.2'
+  compile 'org.apache.tika:tika-core:1.4'
+  compile 'org.apache.httpcomponents:httpmime:4.5'
+}
+
+version = '0.0.1-SNAPSHOT'
+group = 'net.anshulverma.gradle'
+
+pluginBundle {
+  website = 'http://www.gradle.org/'
+  vcsUrl = 'https://github.com/anshulverma/gradle-fileupload'
+  description = 'Upload a build artifact to a remote location.'
+  tags = ['file', 'upload', 'artifact']
+
+  plugins {
+    fileupload {
+      id = 'net.anshulverma.gradle.fileupload'
+      displayName = 'Gradle FileUpload Plugin'
+      version = '0.0.1'
+    }
+  }
+}

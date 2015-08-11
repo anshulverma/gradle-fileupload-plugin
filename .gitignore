@@ -1,0 +1,19 @@
+# IntelijIDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Build artifacts
+*.class
+
+# Gradle
+.gradle
+build/
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Temporary files
+*~
+.DS_Store
