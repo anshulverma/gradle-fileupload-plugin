@@ -17,12 +17,12 @@ buildscript {
     }
   }
   dependencies {
-    classpath 'net.anshulverma.gradle:fileupload:0.0.1'
+    classpath 'gradle.plugin.anshulverma:fileupload:1.0.0'
   }
 }
 
 // then apply the plugin
-apply plugin: 'fileupload'
+apply plugin: 'net.anshulverma.gradle.fileupload'
 
 // then specify properties for file upload
 fileupload {
