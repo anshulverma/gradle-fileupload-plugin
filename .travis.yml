@@ -2,14 +2,11 @@ language: groovy
 sudo: false
 
 jdk:
-- oraclejdk8
+- oraclejdk7
 
 env:
   matrix:
   - TERM=dumb
-
-before_install:
-- cp gradle.properties.ci gradle.properties
 
 script:
 - JAVA_OPTS="-Xmx384m -XX:+UseG1GC -XX:SoftRefLRUPolicyMSPerMB=0 -noverify" ./gradlew check
