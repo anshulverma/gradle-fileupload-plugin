@@ -1,0 +1,15 @@
+apply plugin: 'codenarc'
+
+codenarcMain {
+  configFile = file('config/codenarc/rules.groovy')
+}
+
+codenarcTest {
+  configFile = file('config/codenarc/testrules.groovy')
+}
+
+codenarc {
+  toolVersion = 0.21
+  reportFormat = 'html'
+  ignoreFailures = false
+}

@@ -1,0 +1,60 @@
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'net.anshulverma.gradle.release'
+
+apply from: "$rootDir/gradle/pom_config.gradle"
+apply from: "$rootDir/gradle/package.gradle"
+
+publishing {
+  repositories {
+    configure(rootProject.ext.releaseRepos)  // gradle-release-plugin sets up the release repos
+  }
+
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+      artifact packageSources {
+        classifier "sources"
+      }
+      artifact(javadocJar) {
+        classifier = 'javadoc'
+      }
+      pom.withXml pomConfig
+    }
+  }
+}
+
+bintray {
+  user = bintrayUser
+  key = bintrayKey
+  publications = ['mavenJava']
+  dryRun = project.hasProperty('dryRun') ? Boolean.valueOf(project.property('dryRun')) : false
+  publish = true
+  pkg {
+    name = 'gradle-fileupload-plugin'
+    repo = 'gradle-plugins'
+    desc = 'Gradle plugin to upload any file to a remote location.'
+    websiteUrl = 'https://github.com/anshulverma/gradle-fileupload-plugin'
+    issueTrackerUrl = 'https://github.com/anshulverma/gradle-fileupload-plugin/issues'
+    vcsUrl = 'https://github.com/anshulverma/gradle-fileupload-plugin.git'
+    licenses = ['Apache-2.0']
+    labels = ['gradle', 'plugin', 'fileupload']
+    publicDownloadNumbers = true
+    version {
+      vcsTag = "v$project.version"
+      attributes = ['gradle-plugin': 'net.anshulverma.gradle:gradle-fileupload-plugin']
+
+      gpg {
+        sign = true
+        passphrase = "$gpgPassphrase"
+      }
+
+      mavenCentralSync {
+        sync = true
+        user = "$ossUser"
+        password = "$ossPassword"
+        close = '1'
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+apply plugin: 'signing'
+
+def javaApiUrl = 'http://docs.oracle.com/javase/1.7.0/docs/api/'
+def groovyApiUrl = 'http://groovy.codehaus.org/gapi/'
+tasks.withType(Javadoc) {
+  options.links(javaApiUrl, groovyApiUrl)
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+  classifier = 'javadoc'
+  from 'build/docs/javadoc'
+}
+
+task packageSources(type: Jar) {
+  classifier = 'sources'
+  from sourceSets.main.allSource
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+  tasks.withType(Javadoc) {
+    options.addStringOption('Xdoclint:none', '-quiet')
+  }
+}
+
+task groovydocJar(type: Jar, dependsOn: groovydoc) {
+  classifier = 'javadoc'
+  from groovydoc.destinationDir
+}
+
+artifacts {
+  archives groovydocJar
+}
+
+jar {
+  manifest {
+    attributes 'Implementation-Title': 'Gradle Fileupload plugin',
+               'Implementation-Version': version,
+               'Built-By': 'Anshul Verma <anshul.verma86@gmail.com>',
+               'Built-Date': new Date(),
+               'Built-JDK': System.getProperty('java.version'),
+               'Built-Gradle': gradle.gradleVersion
+  }
+}
+
+signing {
+  sign configurations.archives
+  sign packageSources
+  sign javadocJar
+  sign jar
+
+  required { isReleaseVersion && gradle.taskGraph.hasTask('publish') }
+}

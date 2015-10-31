@@ -1,0 +1,64 @@
+ext {
+  def pomMetadata = {
+    resolveStrategy = Closure.DELEGATE_FIRST
+    name "${project.name}"
+    description 'Gradle plugin to upload any file to a remote location.'
+    url 'https://github.com/anshulverma/gradle-fileupload-plugin'
+
+    licenses {
+      license {
+        name 'The Apache Software License, Version 2.0'
+        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+        distribution 'repo'
+      }
+    }
+    scm {
+      url 'https://github.com/anshulverma/gradle-fileupload-plugin'
+      connection 'scm:https://anshulvermas@github.com/anshulverma/gradle-fileupload-plugin.git'
+      developerConnection 'scm:git://github.com/anshulverma/gradle-fileupload-plugin.git'
+    }
+    developers {
+      developer {
+        id 'anshulverma'
+        name 'Anshul Verma'
+        email 'anshul.verma86@gmail.com'
+        roles {
+          role 'owner'
+          role 'developer'
+        }
+      }
+    }
+  }
+
+  pomConfig = {
+    def root = asNode()
+    def dependencies = root.dependencies
+    def allDependencies = dependencies.'*'
+
+    if (project.configurations.hasProperty('provided')) {
+      allDependencies.findAll() {
+        project.configurations.provided.allDependencies.find { dep ->
+          dep.name == it.artifactId.text()
+        }
+      }.each() {
+        it.scope*.value = 'provided'
+      }
+    }
+
+    //Fix issue with maven-publish plugin setting compile deps to runtime
+    allDependencies.findAll() {
+      it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
+        dep.name == it.artifactId.text()
+      }
+    }.each() {
+      it.scope*.value = 'compile'
+    }
+
+    allDependencies
+        .findAll { it.artifactId.text() == 'groovy-all' }
+        .each { it.scope*.value = 'test' }
+
+
+    root.children().last() + pomMetadata
+  }
+}
