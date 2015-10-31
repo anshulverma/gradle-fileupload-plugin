@@ -35,7 +35,3 @@ fileupload {
   }
 }
 ```
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/anshulverma/gradle-fileupload/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
