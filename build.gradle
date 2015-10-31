@@ -13,7 +13,6 @@ buildscript {
   }
 
   dependencies {
-    classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
     classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
     classpath 'net.anshulverma.gradle:gradle-release-plugin:0.2.1'
   }
@@ -22,6 +21,11 @@ buildscript {
 compileGroovy {
   sourceCompatibility = '1.6'
   targetCompatibility = '1.6'
+}
+
+repositories {
+  mavenCentral()
+  jcenter()
 }
 
 task wrapper(type: Wrapper, description: 'Gradle Wrapper task') {

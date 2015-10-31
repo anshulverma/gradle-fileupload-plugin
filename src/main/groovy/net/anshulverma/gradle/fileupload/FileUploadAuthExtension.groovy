@@ -16,7 +16,7 @@
 package net.anshulverma.gradle.fileupload
 
 /**
- * @author anshul.verma86@gmail.com (Anshul Verma)
+ * @author Anshul Verma (anshul.verma86@gmail.com)
  */
 class FileUploadAuthExtension {
 

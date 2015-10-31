@@ -19,17 +19,17 @@ import org.apache.http.entity.ContentType
 import org.apache.tika.metadata.Metadata
 
 /**
- * @author anshul.verma86@gmail.com (Anshul Verma)
+ * @author Anshul Verma (anshul.verma86@gmail.com)
  */
 class FileMetadata {
 
   private final Metadata metadata
 
-  public FileMetadata(Metadata metadata) {
+  FileMetadata(Metadata metadata) {
     this.metadata = metadata
   }
 
-  public ContentType getContentType() {
+  ContentType getContentType() {
     return ContentType.create(metadata.get(Metadata.CONTENT_TYPE))
   }
 }

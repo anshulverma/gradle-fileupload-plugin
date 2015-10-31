@@ -22,15 +22,15 @@ import org.apache.tika.parser.Parser
 import org.apache.tika.sax.BodyContentHandler
 
 /**
- * @author anshul.verma86@gmail.com (Anshul Verma)
+ * @author Anshul Verma (anshul.verma86@gmail.com)
  */
 class FileMetadataExtractor {
 
-  public static FileMetadata process(String file) {
+  static FileMetadata process(String file) {
     def metadata = new Metadata()
     metadata.set(Metadata.RESOURCE_NAME_KEY, file)
-    ParseContext parseContext = new ParseContext();
-    Parser parser = new AutoDetectParser();
+    ParseContext parseContext = new ParseContext()
+    Parser parser = new AutoDetectParser()
     parser.parse(new FileInputStream(file), new BodyContentHandler(), metadata, parseContext)
     return new FileMetadata(metadata)
   }

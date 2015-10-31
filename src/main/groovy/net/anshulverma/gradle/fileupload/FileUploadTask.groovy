@@ -26,7 +26,7 @@ import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
 /**
- * @author anshul.verma86@gmail.com (Anshul Verma)
+ * @author Anshul Verma (anshul.verma86@gmail.com)
  */
 @Slf4j
 class FileUploadTask extends DefaultTask {
@@ -67,10 +67,7 @@ class FileUploadTask extends DefaultTask {
   }
 
   private static void logResponse(response) {
-    if (log.isDebugEnabled()) {
-      print 'response body: '
-      println getBody(response)
-    }
+    log.debug("response body: \n${getBody(response)}")
   }
 
   private static String getBody(response) {
