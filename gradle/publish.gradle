@@ -5,6 +5,12 @@ apply plugin: 'net.anshulverma.gradle.release'
 apply from: "$rootDir/gradle/pom_config.gradle"
 apply from: "$rootDir/gradle/package.gradle"
 
+ext {
+  gpgPassphrase = project.hasProperty('gpgPassphrase') ? project.property('gpgPassphrase') : System.env['GPG_PASSPHRASE']
+  ossUser = project.hasProperty('ossUser') ? project.property('ossUser') : System.env['OSS_USER']
+  ossPassword = project.hasProperty('ossPassword') ? project.property('ossPassword') : System.env['OSS_PASSWORD']
+}
+
 publishing {
   repositories {
     configure(rootProject.ext.releaseRepos)  // gradle-release-plugin sets up the release repos
