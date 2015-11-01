@@ -14,7 +14,7 @@ buildscript {
 
   dependencies {
     classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
-    classpath 'net.anshulverma.gradle:gradle-release-plugin:0.2.1'
+    classpath 'net.anshulverma.gradle:gradle-release-plugin:0.2.3'
   }
 }
 
