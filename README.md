@@ -1,6 +1,7 @@
 # gradle-fileupload
 
 [![Build Status](https://travis-ci.org/anshulverma/gradle-fileupload-plugin.svg?branch=master)](https://travis-ci.org/anshulverma/gradle-fileupload-plugin)
+[![Download](https://api.bintray.com/packages/anshulverma/gradle-plugins/gradle-fileupload-plugin/images/download.svg)](https://bintray.com/anshulverma/gradle-plugins/gradle-fileupload-plugin/_latestVersion)
 
 A gradle plugin to upload a file to a remote loacation
 
