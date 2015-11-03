@@ -10,14 +10,10 @@ A gradle plugin to upload a file to a remote loacation
 // first add the maven dependency for the plugin
 buildscript {
   repositories {
-    mavenCentral()
-    jcenter()
-    maven {
-      url "https://plugins.gradle.org/m2/"
-    }
+    jcenter() // also works with mavenCentral()
   }
   dependencies {
-    classpath 'gradle.plugin.anshulverma:fileupload:1.0.0'
+    classpath 'net.anshulverma.gradle:gradle-fileupload-plugin:1.0.2'
   }
 }
 
