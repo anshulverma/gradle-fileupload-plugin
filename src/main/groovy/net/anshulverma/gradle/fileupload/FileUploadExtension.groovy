@@ -35,7 +35,9 @@ class FileUploadExtension {
 
   void auth(Closure closure) {
     authSettings = new FileUploadAuthExtension()
-    closure.rehydrate(authSettings, authSettings, authSettings).call()
+    closure.delegate = authSettings
+    closure()
+    authSettings
   }
 
   boolean isAuthEnabled() {
