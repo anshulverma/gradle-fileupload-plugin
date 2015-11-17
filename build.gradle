@@ -6,10 +6,6 @@ group = 'net.anshulverma.gradle'
 buildscript {
   repositories {
     jcenter()
-
-    maven {
-      url  "http://dl.bintray.com/anshulverma/gradle-plugins"
-    }
   }
 
   dependencies {
