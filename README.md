@@ -14,7 +14,7 @@ buildscript {
     jcenter() // also works with mavenCentral()
   }
   dependencies {
-    classpath 'net.anshulverma.gradle:gradle-fileupload-plugin:1.0.2'
+    classpath 'net.anshulverma.gradle:gradle-fileupload-plugin:1.0.4'
   }
 }
 
