@@ -18,10 +18,8 @@ package net.anshulverma.gradle.fileupload
 import groovy.util.logging.Slf4j
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
-import org.apache.http.entity.ContentType
 import org.apache.http.entity.mime.MultipartEntityBuilder
 import org.apache.http.entity.mime.content.StringBody
-import org.apache.http.util.EntityUtils
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
@@ -57,21 +55,12 @@ class FileUploadTask extends DefaultTask {
 
       response.success = {
         logger.info('uploaded file: {}', settings.file)
-        logResponse(it)
+        HttpResponseUtil.logResponse(it)
       }
       response.failure = {
         logger.error('unable to upload file: {}', settings.file)
-        logResponse(it)
+        HttpResponseUtil.logResponse(it)
       }
     }
-  }
-
-  private static void logResponse(response) {
-    log.debug("response body: \n${getBody(response)}")
-  }
-
-  private static String getBody(response) {
-    return new String(EntityUtils.toByteArray(response.entity),
-                      ContentType.getOrDefault(response.entity).charset)
   }
 }
