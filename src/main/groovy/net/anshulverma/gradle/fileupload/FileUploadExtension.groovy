@@ -26,7 +26,9 @@ class FileUploadExtension {
 
   String url
   String file
+  String name
   Map<String, String> params = new HashMap<>()
+  Map<String, String> headers = new HashMap<>()
   FileUploadAuthExtension authSettings
 
   FileUploadExtension(Project project) {

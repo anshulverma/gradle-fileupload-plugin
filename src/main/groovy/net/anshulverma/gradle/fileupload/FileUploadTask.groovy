@@ -42,8 +42,12 @@ class FileUploadTask extends DefaultTask {
     http.request(Method.POST) { request ->
       headers.'Accept' = 'application/json'
 
+      settings.headers.each { name, value ->
+        headers.name = value
+      }
+
       def entityBuilder = MultipartEntityBuilder.create()
-                                                .addBinaryBody('file',
+                                                .addBinaryBody(settings.name,
                                                                new File(settings.file),
                                                                metadata.contentType,
                                                                settings.file)
